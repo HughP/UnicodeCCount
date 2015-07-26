@@ -3,7 +3,7 @@ This is a wish-list of things I would like to add to [UnicodeCCount](http://scri
 
 * There are other canonical equivalences in Unicode. - I wish there was a flag which enabled these, flags for NFC and NFD already exist. See: http://perldoc.perl.org/5.8.8/Unicode/Normalize.html for a perl centric discussion.
 * I wish there was a flag to not count characters, but count functional units. That is a thrid file would be needed but then based on that file (a set of stirngs), could be counted. I have a prototype script in a github repo.
-* I wish there was a flag for applying the Unicode related perl function `lc` to the input. See discussion here: http://perldoc.perl.org/functions/lc.html
+* I wish there was a flag for applying the Unicode related perl function `lc` to the input. See discussion here: http://perldoc.perl.org/functions/lc.html :: http://perl.about.com/od/programmingperl/qt/perllcfunction.htm
   * It would be good to also create a paired output.
 * I wish sometimes that the Unicode NAME for a character was also avaible via a column.
 * I wish that a list of scritps from which characters are present in the text input could be output, with the scritp IDs.
