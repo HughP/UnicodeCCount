@@ -1,5 +1,5 @@
 # UnicodeCCount
-This is a wish-list of things I would like to add to [UnicodeCCount](http://scripts.sil.org/UnicodeCharacterCount) Someday. I am not a `perl` programer, but as I have used this tool, there are some things which I wish it did, and other things which I wish it did a little differently.
+This is a wish-list of things I would like to add to [UnicodeCCount](http://scripts.sil.org/UnicodeCharacterCount). The original author would likely consider these features as project creep. So, it is likely up to me to do this, so here is to ... Someday. I am not a `perl` programer, but as I have used this tool, there are some things which I wish it did, and other things which I wish it did a little differently.
 
 * There are other canonical equivalences in Unicode (ie. FCC + FCD). - I wish there was a flag which enabled these, flags for NFC and NFD already exist. See: http://perldoc.perl.org/5.8.8/Unicode/Normalize.html for a perl centric discussion.
 * I wish there was a flag to not count characters, but count functional units. That is a thrid file would be needed but then based on that file (a set of stirngs), could be counted. I have a prototype script in a github repo.
