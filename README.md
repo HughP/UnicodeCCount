@@ -6,7 +6,7 @@ This is a wish-list of things I would like to add to [UnicodeCCount](http://scri
 * I wish there was a flag for applying the Unicode related perl function `lc` to the input. See discussion here: http://perldoc.perl.org/functions/lc.html :: http://perl.about.com/od/programmingperl/qt/perllcfunction.htm
   * It would be good to also create a paired output.
 * I wish sometimes that the Unicode NAME for a character was also avaible via a column.
-* I wish that a list of scritps from which characters are present in the text input could be output, with the scritp IDs.
+* I wish that a list of scripts from which characters are present in the text input could be output, with the script IDs.
 * I wish that tabs (and in general characters which do not have glyphs) were not returned without glyphs. I think there are two flags needed here. One flag for just `tab` related issues, and one for all grahemeless characters. Tab is epecially difficult, if the output of UCC is desired to be used as a data file, reading the file as a tab seperated file is problematic when the character output is also a tab. Other graphemeless characters are just difficult to read without the Unicode names or without a unique glyph.
 
 The following is a list of some characters and the glyphs that Unicode has registerd for them: 
