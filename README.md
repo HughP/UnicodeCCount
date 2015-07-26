@@ -2,11 +2,11 @@
 This is a wish-list of things I would like to add to [UnicodeCCount](http://scripts.sil.org/UnicodeCharacterCount). The original author would likely consider these features as project creep. So, it is likely up to me to do this, so here is to ... Someday. I am not a `perl` programer, but as I have used this tool, there are some things which I wish it did, and other things which I wish it did a little differently.
 
 * There are other canonical equivalences in Unicode (ie. FCC + FCD). - I wish there was a flag which enabled these, flags for NFC and NFD already exist. See: http://perldoc.perl.org/5.8.8/Unicode/Normalize.html for a perl centric discussion.
-* I wish there was a flag to not count characters, but count functional units. That is a thrid file would be needed but then based on that file (a set of strings), could be counted. I have a prototype script in a github repo.
+* I wish there was a flag to not count characters, but count functional units. That is a third file would be needed but then based on that file (a set of strings), could be counted. I have a prototype script in a github repo.
 * I wish there was a flag for applying the Unicode related perl function `lc` to the input. See discussion here: http://perldoc.perl.org/functions/lc.html :: http://perl.about.com/od/programmingperl/qt/perllcfunction.htm
-  * It would be good to also create a paired output.
+  * It would be good to also create a paired output - so order based on upper-lower case pairing rather than say Unicode ordering.
 * I wish sometimes that the Unicode NAME for a character was also avaible via a column.
-* I wish that a list of scripts from which characters are present in the text input could be output, with the script IDs.
+* I wish that a list of scripts from which characters are present in the text input could be output, with those script's IDs.
 * I wish that tabs (and in general characters which do not have glyphs) were not returned without glyphs. I think there are two flags needed here. One flag for just `tab` related issues, and one for all grahemeless characters. Tab is epecially difficult, if the output of UCC is desired to be used as a data file, reading the file as a tab seperated file is problematic when the character output is also a tab. Other graphemeless characters are just difficult to read without the Unicode names or without a unique glyph.
 
 The following is a list of some characters and the glyphs that Unicode has registerd for them: 
