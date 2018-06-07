@@ -30,8 +30,8 @@ This is a wish-list of things I would like to add to [UnicodeCCount](http://scri
   * It would be good to also create a paired output - so order based on upper-lower case pairing rather than say Unicode ordering.
   
 ## Output clarifications  
-* I wish sometimes that the Unicode NAME for a character was also avaible via a column.
-* I wish that a list of scripts from which characters are present in the text input could be output, with those script's IDs.
+* I wish sometimes that the Unicode NAME for a character was also avaible via a column.see: https://perldoc.perl.org/charnames.html
+* I wish that a list of scripts from which characters are present in the text input could be output, with those script's IDs. See: https://perldoc.perl.org/Unicode/UCD.html#*charscript()* and https://perldoc.perl.org/5.8.8/perlunicode.html#Scripts
 * I wish that tabs (and in general characters which do not have glyphs) were not returned without glyphs. I think there are two flags needed here. One flag for just `tab` related issues, and one for all grahemeless characters. Tab is epecially difficult, if the output of UCC is desired to be used as a data file, reading the file as a tab seperated file is problematic when the character output is also a tab. Other graphemeless characters are just difficult to read without the Unicode names or without a unique glyph.
 
 The following is a list of some characters and the glyphs that Unicode has registerd for them: 
