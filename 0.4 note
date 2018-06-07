@@ -1,0 +1,12 @@
+From: Bob Hallissy <bobhallissy@gmail.com>
+Date: June 15, 2012 1:06:08 PM PDT
+To: Hugh Paterson III <hugh_paterson@sil.org>
+Subject: Re: test file
+
+Hugh,
+
+Looks to me like the output is correct. However I suspect your Mac would benefit from a UTF-8 signature character (U+FEFF, also known as Byte Order Mark or BOM) at the start of the output, so I've added a -b option to generate that.
+
+So try the attached replacement script (which should have correct line-endings for Mac, and it has the she-bang at the start -- you'll need to chmod +x it, of course) -- and just add -b to your command-line options.
+
+Bob
