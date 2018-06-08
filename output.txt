@@ -12,7 +12,7 @@ Character count for 'input.txt':
 	U+006C	l	1
 	U+006F	o	48
 	U+0070	p	12
-	U+0075	u	37
+	U+0075	u	36
 	U+00A5	¥	48
 	U+00A7	§	24
 	U+00A8	¨	112
