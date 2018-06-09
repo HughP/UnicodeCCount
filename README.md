@@ -3,15 +3,30 @@ This is a wish-list of things I would like to add to [UnicodeCCount](http://scri
 
 ## Additional canonical equivalences
 * There are other canonical equivalences in Unicode (ie. FCC + FCD). - I wish there was a flag which enabled these, flags for NFC and NFD already exist. See: http://perldoc.perl.org/5.8.8/Unicode/Normalize.html for a perl centric discussion.
-  * This would allow for the proper ordering of diacritics with the same tool as is used to count characters. So if we needed to pre-flight a document for another process we could use UnicodeCCount.
+  * This would allow for the proper ordering of diacritics with the same tool as is used to count characters. So if we needed to pre-flight a document for another process we could use UnicodeCCount. Upon more reflection: _Actually UCC is only a diagnostic tool. It reads original data. It never re-writes an orignal file.... so the only diagonstics in this area are: is the target file FCC or FCD compliant._
  
 ## Using a third argument as a reference to a data set
-* I wish there was a flag that permitted the count functional units (sets of unicode codepoints that orthography users think of as a single unit). That is a third file would be needed but then based on that file (listing a set of strings), functional units could be counted. I have a prototype script in a github repo.
-* I wish there was also a custom colation order. Two useful usecases I can think of would be:
-  * segmentation based on colation order of the local of the language of the data one is working with, and
-  * segmentation based on the typology of characters presented in Unicode report #tr35. 
-   For instance I was looking at [Masai on ScriptSource](http://scriptsource.org/cms/scripts/page.php?item_id=wrSys_detail_sym&key=mas-Latn) and noticed that there are "main characters", "Auxiliary characters", and "index characters". Auxiliary and Index characters are informally defined in https://www.unicode.org/reports/tr35/tr35-general.html#Exemplars Index characters are more fully described: http://unicode.org/reports/tr35/tr35-collation.html#Index_Characters. Basically, an index character list just defines a useful set of buckets. Note that index characters are, by definition, in local collation order, but they do not define -- nor could they be used to deduce -- the full collation details. You can see that by recognizing that "A D G J M P S V Y" would be a valid (if uncommon) index character list for English. Similarly, for the Masai example, there are lots of characters in the "Main characters used" than are in the "Index characters use" lists -- you'd have to know how to collate Masai to put things into the buckets defined by the index.  
-   Ideally such an implementation would be based on the Unicode Collation Algorithm (which is available from Perl), using tailoring to get what you wanted.  
+* I wish there was a flag that permitted the count functional units (sets of unicode codepoints that orthography users think of as a single unit). That is, a third file would be needed but then based on that file (listing a set of strings), functional units could be counted. I have a prototype script in a github repo. - I need to find it.
+* I wish there was also a custom colation order. Three useful use-cases I can think of would be:
+  * Case pairing - Aa, Bb, Cc, etc. Each character would get its own row as is the default, pairs would either be defined by a third file, or by a chosen Locale. 
+  * Segmentation based on colation order of the locale or an order presented in a seperate file
+  * Segmentation based on the typology of characters presented in Unicode report #tr35. 
+ 
+ ### Casing
+A flag would be needed for applying the Unicode related perl function `lc` to the input. See discussion here: http://perldoc.perl.org/functions/lc.html :: http://perl.about.com/od/programmingperl/qt/perllcfunction.htm
+  * It would be good to also create a paired output - so order based on upper-lower case pairing rather than say Unicode ordering.
+ 
+ ### Colation Order
+ Sort order could additionally be lingusitic, orthogaphic, or locale
+ * Lingusitic
+  * 1: PTK, BDG, etc. place of articulation
+  * 2: PB, TD, KG, etc. manner of articulation
+ * Orthographic: Vowels, Consonants, Punctuation, Currency,
+ * Locale: as defined in the locale chosen.
+ 
+ ### Unicode #tr35
+ For instance I was looking at [Masai on ScriptSource](http://scriptsource.org/cms/scripts/page.php?item_id=wrSys_detail_sym&key=mas-Latn) and noticed that there are "main characters", "Auxiliary characters", and "index characters". Auxiliary and Index characters are informally defined in https://www.unicode.org/reports/tr35/tr35-general.html#Exemplars Index characters are more fully described: http://unicode.org/reports/tr35/tr35-collation.html#Index_Characters. Basically, an index character list just defines a useful set of buckets. Note that index characters are, by definition, in local collation order, but they do not define -- nor could they be used to deduce -- the full collation details. You can see that by recognizing that "A D G J M P S V Y" would be a valid (if uncommon) index character list for English. Similarly, for the Masai example, there are lots of characters in the "Main characters used" than are in the "Index characters use" lists -- you'd have to know how to collate Masai to put things into the buckets defined by the index.  
+   Ideally such an implementation would be based on the Unicode Collation Algorithm (which is available from Perl), using tailoring to get what one wanted.  
 
    `do the UnicodCCount thing according to all indicated options;`  
        `order output according to order in file $_`  
@@ -25,9 +40,6 @@ This is a wish-list of things I would like to add to [UnicodeCCount](http://scri
 ## Non-conatinive pairing
 * In tonal languages which represent their tone via diacritics, it is often the case that these languages have tonal patterns which are phonologically important. That is, the sequence of diacritics across the tops of vowels is important just as much as digraphs or trigraphs. So, How can we comput if these exists? if we have the types of tonal patterns (also known as melodies) in a list, then it makes sense to be able to count these as functional units. (and across how many characters the melody occurs.) something like: find diacritic then length($string) to next vowel to match the next melody pattern. (On this point it might be good for me to look at the following tutorials [1](http://perlmaven.com/string-functions-length-lc-uc-index-substr) & [2](http://www.pageresource.com/cgirec/ptut13.htm))
 
-## Chomp formating
-* I wish there was a flag for applying the Unicode related perl function `lc` to the input. See discussion here: http://perldoc.perl.org/functions/lc.html :: http://perl.about.com/od/programmingperl/qt/perllcfunction.htm
-  * It would be good to also create a paired output - so order based on upper-lower case pairing rather than say Unicode ordering.
   
 ## Output clarifications  
 * I wish sometimes that the Unicode NAME for a character was also avaible via a column.see: https://perldoc.perl.org/charnames.html
