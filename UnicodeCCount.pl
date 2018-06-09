@@ -10,7 +10,6 @@ use File::Spec;
 
 use Getopt::Std;
 use Encode;
-use Unicode::Escape;
 
 
 our $Version = 0.5;	# 2018-06-08
@@ -145,13 +144,14 @@ for $file (@ARGV)
 
 
 		map {
-			# Prints the code
+			# Prints and concats the code point to $t
+			my $codepoint = sprintf("U+%04X", ord($_));
 			printf "U+%04X", ord($_);
 
 			# Prints the glyph (or control char pic with -g) and the occurance count
 
 			if($opt_g) {
-				printf "\t%s\t%d\t", $char =~ /\p{IsGraph}/ ? $char : hot_lemon( codepoint_hex( ord($_) ) ), $charcounts{$char};
+				printf "\t%s\t%d\t", $char =~ /\p{IsGraph}/ ? $char : hot_lemon( $codepoint ), $charcounts{$char};
 			}
 			else {
 				printf "\t%s\t%d\t", $char =~ /\p{IsGraph}/ ? $char : ' ', $charcounts{$char};
@@ -167,58 +167,49 @@ for $file (@ARGV)
 	}
 }
 
-
 sub print_name {
-   # get total number of arguments passed.
 	 print charnames::viacode(@_);
 	 print "\n";
 }
 
-sub codepoint_hex {
-	return Unicode::Escape::unescape(@_)
-}
-
 sub hot_lemon {
-	# Need to
-	# my $thing = printf "U+%04X", @_;
-	# print @_;
-	# if (1) {return "yo!"}
-	# if (@_ = "U+0033") { return "␠" };
+	# Problem 1: The strings are not being matched (in our case we fall through and print the code point)
+	# Problem 2: If we force a return value the character does not get printed
+	# 						return "␀";
+
+	if (@_ eq "U+0000") { return "␀" };
+	if (@_ eq "U+0001") { return "␁" };
+	if (@_ eq "U+0002") { return "␂" };
+	if (@_ eq "U+0003") { return "␃" };
+	if (@_ eq "U+0004") { return "␄" };
+	if (@_ eq "U+0005") { return "␅" };
+	if (@_ eq "U+0006") { return "␆" };
+	if (@_ eq "U+0007") { return "␇" };
+	if (@_ eq "U+0008") { return "␈" };
+	if (@_ eq "U+0009") { return "␉" };
+	if (@_ eq "U+000A") { return "␊" };
+	if (@_ eq "U+000B") { return "␋" };
+	if (@_ eq "U+000C") { return "␌" };
+	if (@_ eq "U+000D") { return "␍" };
+	if (@_ eq "U+000E") { return "␎" };
+	if (@_ eq "U+000F") { return "␏" };
+	if (@_ eq "U+0010") { return "␐" };
+	if (@_ eq "U+0011") { return "␑" };
+	if (@_ eq "U+0012") { return "␒" };
+	if (@_ eq "U+0013") { return "␓" };
+	if (@_ eq "U+0014") { return "␔" };
+	if (@_ eq "U+0015") { return "␕" };
+	if (@_ eq "U+0016") { return "␖" };
+	if (@_ eq "U+0017") { return "␗" };
+	if (@_ eq "U+0018") { return "␘" };
+	if (@_ eq "U+0019") { return "␙" };
+	if (@_ eq "U+001A") { return "␚" };
+	if (@_ eq "U+001B") { return "␛" };
+	if (@_ eq "U+001C") { return "␜" };
+	if (@_ eq "U+001D") { return "␝" };
+	if (@_ eq "U+001E") { return "␞" };
+	if (@_ eq "U+001F") { return "␟" };
+	if (@_ eq "U+007F") { return "␡" };
+	if (@_ eq "U+00A0") { return "␠" };
 	return @_;
-	# if (@_ = "U+%04X") { return "?"}
-	if (@_ = "U+0000") { return "␀" };
-	if (@_ = "U+0000") { return "␀" };
-	if (@_ = "U+0001") { return "␁" };
-	if (@_ = "U+0002") { return "␂" };
-	if (@_ = "U+0003") { return "␃" };
-	if (@_ = "U+0004") { return "␄" };
-	if (@_ = "U+0005") { return "␅" };
-	if (@_ = "U+0006") { return "␆" };
-	if (@_ = "U+0007") { return "␇" };
-	if (@_ = "U+0008") { return "␈" };
-	if (@_ = "U+0009") { return "␉" };
-	if (@_ = "U+000A") { return "␊" };
-	if (@_ = "U+000B") { return "␋" };
-	if (@_ = "U+000C") { return "␌" };
-	if (@_ = "U+000D") { return "␍" };
-	if (@_ = "U+000E") { return "␎" };
-	if (@_ = "U+000F") { return "␏" };
-	if (@_ = "U+0010") { return "␐" };
-	if (@_ = "U+0011") { return "␑" };
-	if (@_ = "U+0012") { return "␒" };
-	if (@_ = "U+0013") { return "␓" };
-	if (@_ = "U+0014") { return "␔" };
-	if (@_ = "U+0015") { return "␕" };
-	if (@_ = "U+0016") { return "␖" };
-	if (@_ = "U+0017") { return "␗" };
-	if (@_ = "U+0018") { return "␘" };
-	if (@_ = "U+0019") { return "␙" };
-	if (@_ = "U+001A") { return "␚" };
-	if (@_ = "U+001B") { return "␛" };
-	if (@_ = "U+001C") { return "␜" };
-	if (@_ = "U+001D") { return "␝" };
-	if (@_ = "U+001E") { return "␞" };
-	if (@_ = "U+001F") { return "␟" };
-	if (@_ = "U+007F") { return "␡" };
-	if (@_ = "U+00A0") { return "␠" };
 }
