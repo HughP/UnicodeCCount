@@ -17,8 +17,14 @@ A flag would be needed for applying the Unicode related perl function `lc` to th
   * It would be good to also create a paired output - so order based on upper-lower case pairing rather than say Unicode ordering.
  
  ### Colation Order
+ Sort order could additionally be lingusitic, orthogaphic, or locale
+ * Lingusitic
+  * 1: PTK, BDG, etc. place of articulation
+  * 2: PB, TD, KG, etc. manner of articulation
+ * Orthographic: Vowels, Consonants, Punctuation, Currency,
+ * Locale: as defined in the locale chosen.
  
- ###Unicode #tr35
+ ### Unicode #tr35
  For instance I was looking at [Masai on ScriptSource](http://scriptsource.org/cms/scripts/page.php?item_id=wrSys_detail_sym&key=mas-Latn) and noticed that there are "main characters", "Auxiliary characters", and "index characters". Auxiliary and Index characters are informally defined in https://www.unicode.org/reports/tr35/tr35-general.html#Exemplars Index characters are more fully described: http://unicode.org/reports/tr35/tr35-collation.html#Index_Characters. Basically, an index character list just defines a useful set of buckets. Note that index characters are, by definition, in local collation order, but they do not define -- nor could they be used to deduce -- the full collation details. You can see that by recognizing that "A D G J M P S V Y" would be a valid (if uncommon) index character list for English. Similarly, for the Masai example, there are lots of characters in the "Main characters used" than are in the "Index characters use" lists -- you'd have to know how to collate Masai to put things into the buckets defined by the index.  
    Ideally such an implementation would be based on the Unicode Collation Algorithm (which is available from Perl), using tailoring to get what one wanted.  
 
