@@ -12,7 +12,10 @@ use Getopt::Std;
 use Encode;
 use Unicode::Escape;
 
-our $Version = 0.4;	# 2012-06-15
+
+our $Version = 0.5;	# 2018-06-08
+#	Added -n character names for HJP3
+#our $Version = 0.4;	# 2012-06-15
 #	Added -b UTF8 BOM signature for HJP3
 #our $Version = 0.3;	# 2005-10-15
 #	Added -f and -r options for JW
